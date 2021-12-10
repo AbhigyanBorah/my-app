@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
+  
   const handleUpClick = () => {
     // console.log("Uppercase was clicked " + text);
     let newText = text.toUpperCase();
@@ -57,19 +58,19 @@ export default function TextForm(props) {
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleDownClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleDownClick}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleCopy}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopy}>
           Copy Text
         </button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleExtraSpace}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleExtraSpace}>
           Remove Extra Spaces
         </button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleClear}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClear}>
           Clear Text
         </button>
       </div>
@@ -79,7 +80,7 @@ export default function TextForm(props) {
           {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters
         </p>
         <p>
-          It will take {0.008 * text.split(" ").length} minutes to read this.
+          It will take {0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes to read this.
         </p>
         <h3>Preview</h3>
         <p>{text.length>0?text:"Enter something in the textbox above to preview"}</p>
